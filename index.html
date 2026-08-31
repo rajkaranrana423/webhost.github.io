@@ -1,1 +1,335 @@
-<h2>Application is running</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura | Modern Creative Agency</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        :root {
+            --bg-color: #0b0f19;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient Background Glows */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, rgba(0,0,0,0) 70%);
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(0,0,0,0) 70%);
+            bottom: -200px;
+            left: -100px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 8%;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(45deg, #fff, var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        .cta-btn {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            padding: 0.7rem 1.6rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .primary-btn {
+            background: var(--accent);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 4px 20px var(--accent-glow);
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn:hover {
+            background: #4f46e5;
+            box-shadow: 0 4px 30px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid var(--card-border);
+            transition: background 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 8%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 5%;
+            }
+            nav {
+                display: none; /* Simplification for code briefness */
+            }
+            .features {
+                padding: 4rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow"></div>
+    <div class="glow-2"></div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">AURA</div>
+        <nav>
+            <ul>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Pricing</a></li>
+            </ul>
+        </nav>
+        <a href="#" class="cta-btn">Get Started</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="badge">✨ Redefining Digital Horizons</span>
+        <h1>We design experiences that map the future</h1>
+        <p>Aura blends cutting-edge visual layouts with pristine engineering to make your business digital-first, elegant, and unforgettable.</p>
+        <div class="hero-buttons">
+            <a href="#" class="primary-btn">Start Your Project</a>
+            <a href="#" class="secondary-btn">View Case Studies</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header">
+            <h2>Crafted with precision</h2>
+            <p>Everything you need to scale your identity online without losing human focus.</p>
+        </div>
+        
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-icon">✦</div>
+                <h3>Art Direction</h3>
+                <p>Curated visual frameworks built to make your platform structurally unforgettable and distinctively unique.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Peak Performance</h3>
+                <p>Optimized directly down to the atom for rapid delivery and ultra-smooth fluid navigation.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-icon">◎</div>
+                <h3>Fluid UI</h3>
+                <p>Fully adaptive component blocks that naturally shift across modern smartphone, tablet, and desktop dimensions.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
